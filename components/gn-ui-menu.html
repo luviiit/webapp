@@ -108,7 +108,9 @@
          */
         vehicles: {
           type: Array,
-          notify: true
+          value: function() {
+            return [];
+          }
         },
 
         /**
@@ -143,6 +145,12 @@
           value: 100,
           observer: '_positionChanged'
         }
+      },
+
+      attached: function() {
+        this.async(function() {
+          this.vehicles = document.querySelector('gn-api').getVehicles();
+        });
       },
 
       /**
